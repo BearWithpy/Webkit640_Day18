@@ -4,7 +4,8 @@ const cors = require("cors")
 const dotenv = require("dotenv")
 const { Router } = require("express")
 const app = express()
-const router = express.Router()
+
+const router = Router()
 
 dotenv.config({ path: "env/.env.local" })
 
@@ -18,7 +19,8 @@ app.use(express.urlencoded({ extended: true }))
 
 app.use(express.static(__dirname + "/public"))
 
-app.post("/login", (req, res) => {
+// 라우터 객체에 넣어줌
+router.route("/login").post((req, res) => {
     // 로그인 처리
     const { id, passwd } = req.body
     console.log(id, passwd)
@@ -26,8 +28,29 @@ app.post("/login", (req, res) => {
     res.redirect("/")
 })
 
-router.route("/path").post((req, res) => {
-    console.log("/path 처리함")
+// router로 REST 방식의 요청 처리 테스트
+// get(), put(), post(), delete()
+router.route("/board").get((req, res) => {
+    // 로그인 처리
+
+    console.log("GET")
+
+    res.redirect("/")
+})
+router.route("/board").post((req, res) => {
+    console.log("POST")
+
+    res.redirect("/")
+})
+router.route("/board").put((req, res) => {
+    console.log("PUT")
+
+    res.send({ data: req.body })
+})
+router.route("/board").delete((req, res) => {
+    console.log("DELETE")
+
+    res.send({ data: req.body })
 })
 
 app.use("/", router)
