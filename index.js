@@ -42,6 +42,14 @@ router.route("/board").post((req, res) => {
 
     res.redirect("/")
 })
+router.route("/board/:user/:job").post((req, res) => {
+    console.log("POST - /board/:user/:job")
+    const { user, job } = req.params
+    console.log(user, job)
+
+    res.send({ data: req.params })
+})
+
 router.route("/board").put((req, res) => {
     console.log("PUT")
 
