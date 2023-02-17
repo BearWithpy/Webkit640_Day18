@@ -63,6 +63,15 @@ router.route("/board").delete((req, res) => {
 
 app.use("/", router)
 
+// error 처리 - 라우터 미들웨어 아래에 위치해야 함
+app.all("*", (req, res) => {
+    // res.status(400).end("404 NOT FOUND")
+    res.redirect("./404.html")
+    // res.status(404).redirect("./404.html")
+})
+
+// express-error-handler 사용
+
 const server = http.createServer(app)
 server.listen(app.get("port"), () => {
     console.log(`Nodejs Server running... port ${app.get("port")}`)
