@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>nodejs 계산기 (REST)</h1>
+        <form action="">
+            <input type="text" name="x" />
+            <input type="text" name="y" />
+            <select id="" name="op">
+                <option value="GET">+</option>
+                <option value="POST">-</option>
+                <option value="PUT">*</option>
+                <option value="DELETE">/</option>
+            </select>
+            <input type="submit" />
+        </form>
+        <div id="result"></div>
+
+        <script src="http://code.jquery.com/jquery.js"></script>
+        <script>
+            $("form").submit(function (e) {
+                e.preventDefault()
+                let x = this.x.value
+                let y = this.y.value
+                let method = this.op.value
+                let calcUrl = `http://localhost:3003/calc/${x}/${y}`
+                // console.log(x, y, op, calcUrl)
+
+                $.ajax({
+                    url: calcUrl,
+                    method: method,
+                    dataType: "text",
+                    success: function (data) {
+                        $("div#result").text(data)
+                    },
+                })
+            })
+        </script>
+    </body>
+</html>

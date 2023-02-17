@@ -31,6 +31,8 @@ router.route("/home").get((req, res) => {
     res.end()
 })
 
+/////// 요청 연습하기!! -------
+
 router.route("/calc/:x/:y").get((req, res) => {
     console.log("GET - /calc/:x/:y => 더하기 요청")
     const { x, y } = req.params
@@ -54,6 +56,8 @@ router.route("/calc/:x/:y").delete((req, res) => {
     const { x, y } = req.params
     res.send({ result: parseInt(x) / parseInt(y) })
 })
+
+/////// router -------
 
 app.use("/", router)
 

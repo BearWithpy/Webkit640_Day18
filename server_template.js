@@ -31,10 +31,6 @@ router.route("/home").get((req, res) => {
     res.end()
 })
 
-router.route("/calc/:x/:y").get((req, res) => {
-    console.log("GET - /calc/:x/:y")
-})
-
 app.use("/", router)
 
 /////// error handler -----
