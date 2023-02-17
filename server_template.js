@@ -8,7 +8,7 @@ const expressSession = require("express-session")
 
 app.set("views", __dirname + "/views")
 app.set("view engine", "ejs")
-process.env.PORT = 3003
+process.env.PORT = 3000
 app.set("port", process.env.PORT || 3001)
 
 app.use(cookieParser())
@@ -32,27 +32,7 @@ router.route("/home").get((req, res) => {
 })
 
 router.route("/calc/:x/:y").get((req, res) => {
-    console.log("GET - /calc/:x/:y => 더하기 요청")
-    const { x, y } = req.params
-    res.send({ result: parseInt(x) + parseInt(y) })
-})
-
-router.route("/calc/:x/:y").post((req, res) => {
-    console.log("GET - /calc/:x/:y => 빼기 요청")
-    const { x, y } = req.params
-    res.send({ result: parseInt(x) - parseInt(y) })
-})
-
-router.route("/calc/:x/:y").put((req, res) => {
-    console.log("GET - /calc/:x/:y => 곱하기 요청")
-    const { x, y } = req.params
-    res.send({ result: parseInt(x) * parseInt(y) })
-})
-
-router.route("/calc/:x/:y").delete((req, res) => {
-    console.log("GET - /calc/:x/:y => 나누기 요청")
-    const { x, y } = req.params
-    res.send({ result: parseInt(x) / parseInt(y) })
+    console.log("GET - /calc/:x/:y")
 })
 
 app.use("/", router)
